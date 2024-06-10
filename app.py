@@ -131,7 +131,10 @@ def chat_window(analyst):
         try:
             with st.spinner("Analyzing..."):
                 response = analyst.chat(user_question)
-                st.write(response)
+                if '.png' in response:
+                    st.image('/workspaces/Getting_started_with_PandasAI/exports/charts/temp_chart.png')
+                else:
+                    st.write(response)
                 st.session_state.messages.append({"role":"assistant","response":response})
         
         except Exception as e:
